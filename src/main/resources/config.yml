@@ -1,0 +1,63 @@
+# ZoneReplica 設定檔
+# 新版本加入的設定會在啟動與 /zr reload 時自動補上，原有的數值會保留（舊檔備份為 config.yml.bak）
+# 請勿修改 config-version
+config-version: 1
+
+# 所有聊天訊息開頭的文字，支援 & 顏色碼與 &#RRGGBB 十六進位色碼
+prefix: '&8[&bZoneReplica&8] &r'
+
+update-checker:
+  # 是否向 GitHub 檢查新版本（啟動時與 /zr version）；設為 false 完全不連線
+  enabled: true
+  # 有新版本時，具備 zonereplica.version 權限的玩家登入 3 秒後收到提醒
+  notify-on-join: true
+
+selection-tool:
+  # 選取工具的材質（需為物品）
+  material: BLAZE_ROD
+  # 取得工具後多少秒未選取就自動收回
+  timeout-seconds: 120
+
+outline:
+  # DISPLAY = 發光外框（Block Display）、PARTICLE = 粒子外框
+  mode: DISPLAY
+  # 顏色可用名稱（AQUA、GREEN、RED、YELLOW、WHITE…）或 #RRGGBB
+  sample-color: AQUA
+  placement-color: GREEN
+  overlap-color: RED
+
+limits:
+  # 單一樣本最大方塊數（長×寬×高）
+  max-volume: 1000000
+  # 每 tick 最多放置的方塊數（記錄時讀取方塊較省資源，會使用 4 倍的數量）
+  blocks-per-tick: 4096
+  # 每 tick 最多花費的毫秒數，超過就留到下一 tick，保護 TPS
+  max-ms-per-tick: 20
+  # 同時執行的任務數，其餘排隊
+  max-concurrent-tasks: 1
+
+backup:
+  # 每個場地保留的備份份數（可連續 /zr undo 的次數）
+  keep: 1
+
+bossbar:
+  # 顏色：PINK、BLUE、RED、GREEN、YELLOW、PURPLE、WHITE
+  color: BLUE
+  # 樣式：PROGRESS、NOTCHED_6、NOTCHED_10、NOTCHED_12、NOTCHED_20（SEGMENTED_10 視同 NOTCHED_10）
+  style: SEGMENTED_10
+
+auto-update:
+  # 覆蓋前倒數提醒的秒數（最大值即倒數總長；手動覆蓋開啟「送走玩家」時也會倒數）
+  warning-seconds: [ 60, 30, 10, 5, 4, 3, 2, 1 ]
+  # 提醒時是否同時顯示標題（Title）
+  warning-title: true
+
+gui:
+  # 介面未儲存就關閉時，暫存設定保留的分鐘數
+  draft-keep-minutes: 5
+  # 聊天輸入逾時秒數
+  chat-input-timeout: 60
+  # 聊天輸入時，輸入這個字放棄
+  chat-cancel-word: '取消'
+  # 是否播放介面音效
+  sounds: true
