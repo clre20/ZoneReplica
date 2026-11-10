@@ -1,0 +1,76 @@
+name: ZoneReplica
+description: ${project.description}
+prefix: ZoneReplica
+version: '${project.version}'
+website: https://github.com/clre20/ZoneReplica
+
+main: clre20.zoneReplica.ZoneReplica
+api-version: '1.21'
+load: POSTWORLD
+softdepend: [ Multiverse-Core ]
+
+authors: [ Clre20 ]
+
+commands:
+  zonereplica:
+    description: ZoneReplica 主指令
+    usage: /<command> help
+    aliases: [ zr ]
+
+permissions:
+  zonereplica.admin:
+    description: ZoneReplica 全部權限
+    default: op
+    children:
+      zonereplica.use: true
+      zonereplica.version: true
+      zonereplica.help: true
+      zonereplica.create: true
+      zonereplica.place: true
+      zonereplica.update: true
+      zonereplica.edit: true
+      zonereplica.delete: true
+      zonereplica.undo: true
+      zonereplica.cancel: true
+      zonereplica.schedule: true
+      zonereplica.list: true
+      zonereplica.reload: true
+  zonereplica.use:
+    description: 使用 /zr 主指令
+    default: op
+  zonereplica.version:
+    description: 顯示版本、檢查更新，並在登入時收到新版本提醒
+    default: op
+  zonereplica.help:
+    description: 顯示幫助
+    default: op
+  zonereplica.create:
+    description: 建立樣本
+    default: op
+  zonereplica.place:
+    description: 設定場地
+    default: op
+  zonereplica.update:
+    description: 執行覆蓋
+    default: op
+  zonereplica.edit:
+    description: 編輯樣本與場地
+    default: op
+  zonereplica.delete:
+    description: 刪除樣本與場地
+    default: op
+  zonereplica.undo:
+    description: 復原最近一次覆蓋
+    default: op
+  zonereplica.cancel:
+    description: 中止覆蓋任務
+    default: op
+  zonereplica.schedule:
+    description: 查看覆蓋進度
+    default: op
+  zonereplica.list:
+    description: 樣本列表
+    default: op
+  zonereplica.reload:
+    description: 重新載入設定與訊息
+    default: op

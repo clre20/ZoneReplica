@@ -1,0 +1,561 @@
+# ZoneReplica 訊息檔：聊天訊息、介面標題、物品名稱與說明全部可在這裡修改
+# 支援 & 顏色碼與 &#RRGGBB 十六進位色碼；聊天訊息會自動加上 config.yml 的 prefix
+# 把某則聊天訊息設為 '' 即不送出
+# 新版本加入的訊息會在啟動與 /zr reload 時自動補上，原有的文字會保留（舊檔備份為 messages.yml.bak）
+# 請勿修改 messages-version
+messages-version: 1
+
+# ===== 一般 =====
+no-permission: '&c你沒有權限執行此指令'
+player-only: '&c此指令只能由玩家執行'
+unknown-subcommand: '&c未知的子指令，輸入 &e/{label} help &c查看說明'
+usage: '&c用法：&e{usage}'
+reload-done: '&a已重新載入 config.yml 與 messages.yml'
+invalid-name: '&c名稱只能使用中文、英文、數字、底線與連字號（不可用連字號開頭），最長 32 字元'
+sample-exists: '&c樣本 &e{sample} &c已存在，請改用 &e/zr edit {sample}'
+sample-not-found: '&c找不到樣本 &e{sample}'
+placement-exists: '&c場地 {target} &c已存在，請改用 &e/zr edit {sample} {placement}'
+placement-not-found: '&c找不到場地 {target}'
+world-not-loaded: '&c場地 {target} &c的世界 &e{world} &c尚未載入'
+confirm-required: '&c此操作需要確認，請在指令後面加上 &e{flag}'
+no-snapshot: '&c樣本 &b{sample} &c尚未記錄快照'
+no-backup: '&c場地 {target} &c沒有可復原的備份'
+no-placements: '&c樣本 &b{sample} &c還沒有任何場地'
+placement-incomplete: '&c場地 {target} &c尚有未設定的項目：&e{missing}'
+out-of-world: '&c場地 {target} &c的範圍超出世界高度'
+draft-resumed: '&7已載入未儲存的暫存設定'
+
+# ===== 列表（後台） =====
+list-empty: '&7目前沒有任何樣本'
+list-header: '&b樣本列表 &7（共 {count} 個）'
+list-entry: '&f- &b{sample} &7世界 {world}，{size}，場地 {placements} 個，快照 {snapshot}'
+
+# ===== 幫助 =====
+help-header: '&b&lZoneReplica &7v{version} 指令說明'
+help:
+  root: '&e/{label} &7- 顯示版本並檢查更新'
+  version: '&e/{label} version &7- 顯示版本並檢查更新'
+  help: '&e/{label} help &7- 顯示這份說明'
+  create: '&e/{label} create <樣本> &7- 建立新樣本'
+  place: '&e/{label} place <樣本> <場地> &7- 設定新的覆蓋場地'
+  update: '&e/{label} update <樣本> [場地] &7- 執行覆蓋（不指定場地時覆蓋全部）'
+  edit: '&e/{label} edit <樣本> [場地] &7- 編輯樣本或場地'
+  del: '&e/{label} del <樣本> [場地] &7- 刪除樣本（連同場地）或場地'
+  undo: '&e/{label} undo <樣本> <場地> &7- 復原最近一次覆蓋'
+  cancel: '&e/{label} cancel <樣本> [場地] &7- 中止進行中或排隊中的任務'
+  schedule: '&e/{label} schedule [樣本] [場地] &7- 查看覆蓋進度'
+  list: '&e/{label} list &7- 樣本列表'
+  reload: '&e/{label} reload &7- 重新載入設定與訊息'
+  flags: '&7後台與指令方塊可加參數：&e-queue &7排隊、&e-force &7中斷目前工作後執行、&e-confirm &7確認刪除或復原'
+usage-of:
+  create: '/{label} create <樣本>'
+  place: '/{label} place <樣本> <場地>'
+  update: '/{label} update <樣本> [場地] [-queue|-force]'
+  edit: '/{label} edit <樣本> [場地]'
+  del: '/{label} del <樣本> [場地] [-confirm]'
+  undo: '/{label} undo <樣本> <場地> [-confirm] [-queue|-force]'
+  cancel: '/{label} cancel <樣本> [場地]'
+
+# ===== 版本與更新 =====
+version-info: '&bZoneReplica &7目前版本 &f{current}'
+update-checking: '&7正在向 GitHub 檢查更新…'
+update-available: '&e發現新版本 &a{latest}&e（目前 {current}），&n點此前往下載'
+update-hover: '&7點擊開啟 GitHub Release 頁面'
+update-latest: '&a已是最新版本'
+update-newer: '&e目前版本 {current} 比 GitHub 上的 {latest} 新（開發版）'
+update-no-release: '&7GitHub 尚無發布版本'
+update-failed: '&c無法檢查更新，請稍後再試'
+update-disabled: '&7已在 config.yml 關閉更新檢查'
+update-join: '&e發現 ZoneReplica 新版本 &a{latest}&e（目前 {current}），&n點此前往下載'
+
+# ===== 選取 =====
+selection-start: '&a請用選取工具&e左鍵點擊方塊&a設定 &e{point}&a（左鍵點空氣取消，{seconds} 秒後自動取消）'
+selection-start-location: '&a請站在要傳送到的位置、面向想要的方向，用選取工具&e左鍵點擊&a記錄 &e{point}&a（{seconds} 秒後自動取消）'
+selection-set: '&a已設定 &e{point}&a：&f{location}'
+selection-cancelled: '&7已取消選取'
+selection-timeout: '&7選取逾時，已收回工具'
+selection-inventory-full: '&c背包已滿，無法取得選取工具'
+selection-world-changed: '&e已換到世界 &f{world}&e，另一個點已清除，請重新設定'
+selection-too-large: '&c範圍 {volume} 格超過上限 {max} 格'
+selection-out-of-world: '&c覆蓋範圍超出世界高度（{min} ~ {max}）'
+point:
+  a: 'A 點'
+  b: 'B 點'
+  c: 'C 點'
+  destination: '傳送位置'
+tool:
+  name: '&6ZoneReplica 選取工具'
+  lore:
+    - '&7左鍵點方塊：記錄座標'
+    - '&7左鍵點空氣：取消'
+    - '&8使用後自動收回'
+
+# ===== 聊天輸入 =====
+chat-prompt: '&a請在聊天欄輸入{what}&7（輸入「{cancel}」放棄，{seconds} 秒後逾時）'
+chat-cancelled: '&7已放棄輸入'
+chat-timeout: '&7輸入逾時'
+chat-what:
+  placement-name: '&e新場地名稱'
+  time: '&e時刻 &7（格式 HH:mm，例如 04:00）'
+  message: '&e送走玩家時的提示文字 &7（可用 & 色碼，輸入「-」改回預設）'
+  player: '&e玩家名稱'
+invalid-time: '&c時刻格式錯誤，請輸入 HH:mm，例如 04:00'
+time-exists: '&c時刻 &e{time} &c已經在列表中'
+time-full: '&c最多只能設定 {max} 個時刻'
+time-added: '&a已新增時刻 &e{time}'
+message-set: '&a已更新提示文字'
+player-not-found: '&c找不到玩家 &e{player}'
+whitelist-added: '&a已將 &e{player} &a加入白名單'
+whitelist-removed: '&e已將 &f{player} &e移出白名單'
+whitelist-exists: '&e{player} &7已在白名單中'
+
+# ===== 儲存與刪除 =====
+missing-options: '&c尚有未設定的項目：&e{missing}'
+sample-created: '&a已建立樣本 &b{sample}'
+sample-saved: '&a已儲存樣本 &b{sample}'
+capture-started: '&a開始記錄 &b{sample} &a的快照…'
+size-changed-warning: '&e樣本尺寸已改變，底下 {count} 個場地的範圍會跟著改變'
+overlap-warning: '&e警告：此區域與 {target} &e重疊'
+placement-saved: '&a已儲存場地 {target}'
+sample-deleted: '&a已刪除樣本 &b{sample}&a（含 {count} 個場地）'
+placement-deleted: '&a已刪除場地 {target}'
+
+# ===== 任務 =====
+task-submitted: '&a開始{action} {target}'
+task-started: '&a開始{action} {target}'
+task-queued: '&e{action} {target} &e已排入佇列，目前順位 &f{position}'
+task-countdown: '&e{action} {target} &e將在 &f{seconds} &e秒後開始'
+task-busy: '&c{target} &c已有任務進行中或排隊中（加上 &e-queue &c排隊，或 &e-force &c中斷目前工作後執行）'
+task-rejected: '&7已拒絕，{target} &7的任務維持原狀'
+task-done: '&a{action}完成：{target}&a，耗時 &e{seconds} &a秒'
+task-failed: '&c{action}失敗：{target}&c（{reason}&c）'
+task-interrupted: '&e{target} &e的{action}已被新的任務中斷'
+task-cancelled: '&e已中止 {target} &e的{action}'
+task-deleted: '&e{target} &e已被刪除，{action}已中止'
+task-status: '{target} &7{action}：{state}'
+cancel-none: '&7{target} &7沒有進行中或排隊中的任務'
+cancel-done: '&a已中止 {target} &a的 {count} 個任務'
+schedule-idle: '&7{target} &7目前沒有任務'
+schedule-header: '&b任務列表 &7（共 {count} 個）'
+schedule-empty: '&7目前沒有任何任務'
+state:
+  running: '&a執行中 {percent}%'
+  waiting: '&e排隊中（順位 {position}）'
+  countdown: '&e倒數 {seconds} 秒'
+action:
+  capture: '記錄快照'
+  update: '覆蓋'
+  undo: '復原'
+  delete: '刪除'
+reason:
+  deleted: '樣本或場地已被刪除'
+  world-not-loaded: '世界尚未載入'
+  snapshot-missing: '快照檔不存在或已損壞'
+  backup-missing: '沒有可復原的備份'
+  size-mismatch: '快照尺寸與目前樣本不同，請重新記錄快照'
+  too-large: '範圍超過上限'
+  chunk-failed: '區塊載入失敗'
+  io: '檔案讀寫失敗，詳見後台'
+  error: '發生錯誤，詳見後台'
+bossbar:
+  progress: '&b{action} {target} &f{percent}%'
+  waiting: '&7{action} {target} &e排隊中（順位 {position}）'
+  countdown: '&e{action} {target} &f{seconds} &e秒後開始'
+  done: '&a{action} {target} &a完成'
+  failed: '&c{action} {target} &c失敗'
+  cancelled: '&e{action} {target} &e已中止'
+
+# ===== 倒數與送走玩家 =====
+auto-warning: '&e此場地將在 &c{seconds} &e秒後重置'
+auto-warning-title: '&e場地即將重置'
+auto-warning-subtitle: '&c{seconds} &e秒後開始'
+teleported: '&e場地重置中，已將你傳送到安全位置'
+whitelist-warning: '&e你在白名單中不會被傳送，但留在範圍內可能會卡進方塊'
+
+# ===== 顯示格式 =====
+format:
+  sample: '&b{sample}'
+  target: '&b{sample} &7/ &b{placement}'
+  separator: '、'
+
+# ===== 缺少的項目 =====
+missing:
+  point-a: 'A 點'
+  point-b: 'B 點'
+  point-c: 'C 點'
+  remove-markers: '移除 AB 標記方塊'
+  copy-entities: '複製實體'
+  clear-entities: '清除原有實體'
+  copy-containers: '複製容器內容'
+  replace-air: '覆蓋空氣'
+  auto-enabled: '啟用自動更新'
+  auto-times: '觸發時刻'
+  auto-days: '星期'
+  auto-teleport: '送走範圍內玩家'
+  auto-destination: '指定位置'
+
+days:
+  monday: '星期一'
+  tuesday: '星期二'
+  wednesday: '星期三'
+  thursday: '星期四'
+  friday: '星期五'
+  saturday: '星期六'
+  sunday: '星期日'
+
+# ===== 後台記錄 =====
+log:
+  enabled: '&aZoneReplica &f{version} &a已啟用，共 {samples} 個樣本'
+  invalid-zone-file: '&c無法讀取樣本檔 {file}，已略過'
+  tasks-restored: '&e已接續上次未完成的 {count} 個任務'
+  unknown-blocks: '&e{sample} / {placement}：快照中有 {count} 種方塊在這個版本不存在，已改為空氣'
+  place-skipped: '&e{sample} / {placement}：{tiles} 個方塊實體、{entities} 個實體無法放置，已略過'
+  auto-scheduled: '&7自動更新 {sample} / {placement}（{time}）開始倒數'
+  auto-start: '&7自動更新 {target} &7開始覆蓋'
+  auto-no-snapshot: '&e自動更新 {sample} / {placement} 略過：樣本尚未記錄快照'
+  auto-world-not-loaded: '&e自動更新 {sample} / {placement} 略過：世界 {world} 尚未載入'
+  task-done: '&a自動更新 {target} &a完成，耗時 {seconds} 秒'
+  task-failed: '&c自動更新 {target} &c失敗：{reason}'
+  task-interrupted: '&e自動更新 {target} &e被新的任務中斷'
+  task-cancelled: '&e自動更新 {target} &e已中止'
+  task-deleted: '&e自動更新 {target} &e已中止（已被刪除）'
+
+# ===== 介面 =====
+gui:
+  filler: ' '
+  state:
+    unset: '&7未設定'
+    'yes': '&a是'
+    'no': '&c否'
+    none: '&7無'
+    enabled: '&a啟用'
+    disabled: '&7未啟用'
+  common:
+    previous:
+      name: '&e上一頁'
+      lore:
+        - '&7第 {page} / {pages} 頁'
+    next:
+      name: '&e下一頁'
+      lore:
+        - '&7第 {page} / {pages} 頁'
+    back:
+      name: '&e返回'
+    close:
+      name: '&c關閉'
+    save-missing:
+      name: '&c無法儲存'
+      lore:
+        - '&7尚有未設定的項目：'
+        - '&e{missing}'
+    overlap-line:
+      - '&c⚠ 與 {target} &c重疊'
+  sample:
+    info:
+      name: '&b樣本資訊'
+      lore:
+        - '&7名稱：&f{sample}'
+        - '&7世界：&f{world}'
+        - '&7A 點：&f{a}'
+        - '&7B 點：&f{b}'
+        - '&7尺寸：&f{size}'
+        - '&7方塊數：&f{blocks}'
+        - '&7快照：&f{snapshot}'
+        - '&7場地：&f{placements} 個'
+    point-a:
+      name: '&c設定 A 點'
+      lore:
+        - '&7目前：&f{pos}'
+        - '&7A 點是覆蓋時的基準點（對應場地的 C 點）'
+        - ''
+        - '&e左鍵取得選取工具'
+    point-b:
+      name: '&9設定 B 點'
+      lore:
+        - '&7目前：&f{pos}'
+        - ''
+        - '&e左鍵取得選取工具'
+    markers:
+      name: '&f移除 AB 標記方塊'
+      lore:
+        - '&7狀態：{state}'
+        - '&7是：A、B 兩格在快照中記錄為空氣，世界中保留'
+        - '&7（避免副本裡多出空中的標記方塊）'
+        - ''
+        - '&e左鍵切換'
+  create:
+    title: '&8建立樣本：{sample}'
+    cancel:
+      name: '&c取消'
+      lore:
+        - '&7捨棄這次的設定'
+    save:
+      name: '&a儲存並記錄快照'
+      lore:
+        - '&7記錄 A-B 範圍內的方塊、NBT、實體與容器內容'
+        - ''
+        - '&e左鍵儲存'
+  edit:
+    title: '&8編輯樣本：{sample}'
+    recapture:
+      name: '&b重新記錄快照'
+      lore:
+        - '&7以目前的 A、B 重新記錄（會一併儲存設定）'
+        - '&7修改了原建築後，用這個讓副本跟著更新'
+        - ''
+        - '&e左鍵執行'
+    placement-entry:
+      name: '&a場地：{placement}'
+      lore:
+        - '&7世界：&f{pworld}'
+        - '&7C 點：&f{c}'
+        - '&7範圍：&f{range}'
+        - '&7自動更新：{auto}'
+        - '&7任務：{task}'
+        - ''
+        - '&e左鍵開啟'
+    auto-on: '&a啟用 &7（{times}）'
+    auto-off: '&7未啟用'
+    task-idle: '&7閒置'
+    task-busy: '&e{action} {state}'
+    add-placement:
+      name: '&a新增場地'
+      lore:
+        - '&7在聊天欄輸入名稱'
+    delete:
+      name: '&c刪除樣本'
+      lore:
+        - '&7連同所有場地、快照與備份一起刪除'
+        - '&e左鍵後需確認'
+    save:
+      name: '&a儲存'
+      lore:
+        - '&7A、B 或標記設定改變時會重新記錄快照'
+  placement:
+    title-new: '&8新增場地：{sample} / {placement}'
+    title-edit: '&8編輯場地：{sample} / {placement}'
+    info:
+      name: '&a場地資訊'
+      lore:
+        - '&7樣本：&f{sample}'
+        - '&7場地：&f{placement}'
+        - '&7世界：&f{world}'
+        - '&7C 點：&f{c}'
+        - '&7範圍：&f{range}'
+        - '&7尺寸：&f{size}'
+        - '&7快照：&f{snapshot}'
+    point-c:
+      name: '&a設定 C 點'
+      lore:
+        - '&7目前：&f{world} {c}'
+        - '&7C 點對應樣本的 A 點，大小沿用 A-B'
+        - '&7可以放在其他世界或維度'
+        - ''
+        - '&e左鍵取得選取工具'
+    copy-entities:
+      name: '&f複製實體'
+      lore:
+        - '&7狀態：{state}'
+        - '&7盔甲座、展示框、畫、生物等'
+        - ''
+        - '&e左鍵切換'
+    clear-entities:
+      name: '&f清除目標區域原有實體'
+      lore:
+        - '&7狀態：{state}'
+        - '&7覆蓋前移除範圍內的實體（玩家除外）'
+        - '&7避免多次覆蓋後實體越來越多'
+        - ''
+        - '&e左鍵切換'
+    copy-containers:
+      name: '&f複製容器內容'
+      lore:
+        - '&7狀態：{state}'
+        - '&7箱子等容器內的物品；否 = 容器保持清空'
+        - '&7（告示牌文字、名稱等 NBT 一律複製）'
+        - ''
+        - '&e左鍵切換'
+    replace-air:
+      name: '&f覆蓋空氣'
+      lore:
+        - '&7狀態：{state}'
+        - '&7是：樣本中的空氣會蓋掉目標原有的方塊'
+        - '&7否：只放置非空氣的方塊'
+        - ''
+        - '&e左鍵切換'
+    auto-update:
+      name: '&e自動更新設定'
+      lore:
+        - '&7目前：{state}'
+        - ''
+        - '&e左鍵開啟'
+    update-now:
+      name: '&b立即覆蓋'
+      lore:
+        - '&7使用已儲存的設定執行覆蓋'
+        - '&e左鍵後需確認'
+    undo:
+      name: '&d復原'
+      lore:
+        - '&7退回最近一次覆蓋前的樣子'
+        - '&e左鍵後需確認'
+    delete:
+      name: '&c刪除場地'
+      lore:
+        - '&7連同備份一起刪除'
+        - '&e左鍵後需確認'
+    cancel:
+      name: '&c取消'
+      lore:
+        - '&7捨棄這次的修改並關閉'
+    back:
+      name: '&c取消並返回'
+      lore:
+        - '&7捨棄這次的修改，回到樣本介面'
+    save:
+      name: '&a儲存'
+      lore:
+        - '&e左鍵儲存'
+  auto:
+    title: '&8自動更新：{sample} / {placement}'
+    enabled:
+      name: '&f啟用自動更新'
+      lore:
+        - '&7狀態：{state}'
+        - '&7依伺服器時間，在勾選的星期與時刻自動覆蓋'
+        - ''
+        - '&e左鍵切換'
+    time-entry:
+      name: '&e{time}'
+      lore:
+        - '&e左鍵刪除這個時刻'
+    add-time:
+      name: '&a新增時刻'
+      lore:
+        - '&7目前 {count} / {max} 個'
+        - '&e左鍵在聊天欄輸入 HH:mm'
+    time-full:
+      name: '&7時刻已滿'
+      lore:
+        - '&7最多 {max} 個'
+    day:
+      name: '&f{day}'
+      lore:
+        - '&7狀態：{state}'
+        - '&e左鍵切換'
+    teleport:
+      name: '&f送走範圍內玩家'
+      lore:
+        - '&7狀態：{state}'
+        - '&7覆蓋前倒數提醒，倒數結束把非白名單玩家送走'
+        - '&7手動覆蓋與自動更新都適用'
+        - ''
+        - '&e左鍵切換'
+    destination:
+      name: '&f目的地：{destination}'
+      lore:
+        - '&7重生點 ↔ 指定位置'
+        - '&7指定位置：&f{location}'
+        - ''
+        - '&e左鍵切換'
+    dest-spawn-name: '&a重生點'
+    dest-custom-name: '&d指定位置'
+    set-location:
+      name: '&d設定指定位置'
+      lore:
+        - '&7目前：&f{location}'
+        - '&7記錄你站立的位置與面向'
+        - ''
+        - '&e左鍵取得選取工具'
+    message:
+      name: '&f送走提示文字'
+      lore:
+        - '&7目前：&f{message}'
+        - ''
+        - '&e左鍵在聊天欄輸入'
+    message-default: '&7（使用預設文字）'
+    whitelist:
+      name: '&f白名單'
+      lore:
+        - '&7目前 {whitelist} 人'
+        - '&7白名單玩家不會被送走'
+        - ''
+        - '&e左鍵開啟'
+    missing:
+      name: '&c尚未完成'
+      lore:
+        - '&7缺少：&e{missing}'
+  whitelist:
+    title: '&8白名單（{count} 人）'
+    entry:
+      name: '&f{player}'
+      lore:
+        - '&e左鍵移出白名單'
+    add-online:
+      name: '&a從線上玩家加入'
+      lore:
+        - '&e左鍵開啟線上玩家列表'
+    add-name:
+      name: '&a以名稱加入'
+      lore:
+        - '&7可加入離線玩家'
+        - '&e左鍵在聊天欄輸入'
+  online:
+    title: '&8選擇要加入白名單的玩家'
+    entry:
+      name: '&f{player}'
+      lore:
+        - '&e左鍵加入白名單'
+  list:
+    title: '&8樣本列表（{count} 個）'
+    entry:
+      name: '&b{sample}'
+      lore:
+        - '&7世界：&f{world}'
+        - '&7尺寸：&f{size}'
+        - '&7場地：&f{placements} 個'
+        - '&7快照：&f{snapshot}'
+        - ''
+        - '&e左鍵編輯'
+  confirm:
+    title: '&8確認{action}'
+    info:
+      name: '&e{action}'
+      lore: []
+    target-line:
+      - '&f{target}'
+      - '&7  世界 {world}，範圍 {range}'
+      - '&7  方塊數 {blocks}'
+    conflict-line:
+      - ''
+      - '&c此場地已有任務進行中或排隊中'
+    delete-sample-line:
+      - '&f樣本 {target}'
+      - '&7連同 {count} 個場地、快照與備份一起刪除'
+    delete-placement-line:
+      - '&f場地 {target}'
+      - '&7連同備份一起刪除'
+    busy-line:
+      - ''
+      - '&c有任務進行中，刪除前會先中止'
+    cancel:
+      name: '&c取消'
+    confirm:
+      name: '&a確認執行'
+    reject:
+      name: '&c拒絕'
+      lore:
+        - '&7不執行這次操作'
+    queue:
+      name: '&e排隊'
+      lore:
+        - '&7等目前的任務完成後執行'
+    force:
+      name: '&6中斷目前工作後執行'
+      lore:
+        - '&7已放下的部分維持原狀'
+        - '&7沿用被中斷任務的備份'
+    delete:
+      name: '&c確認刪除'
+    abort-delete:
+      name: '&c中止任務並刪除'
