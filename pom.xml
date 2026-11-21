@@ -17,7 +17,7 @@
         <!-- 以 Java 21 編譯：1.21.x 與 26.x（伺服器需 Java 25）共用同一個 jar -->
         <java.version>21</java.version>
         <!-- 以最低支援版本的 API 編譯，確保只使用 1.21 起就存在的 API；可用 -Dpaper.version=26.3.build.214-stable 驗證新版 -->
-        <paper.version>1.21-R0.1-SNAPSHOT</paper.version>
+        <paper.version>26.3.build.249-stable</paper.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -84,6 +84,12 @@
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>${paper.version}</version>
+            <scope>provided</scope>
+        </dependency>
+            <dependency>
+            <groupId>clre20</groupId>
+            <artifactId>HttpHub</artifactId>
+            <version>1.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

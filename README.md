@@ -2,6 +2,9 @@
 
 ZoneReplica 是一款專為 Paper (Minecraft 1.21.x 與 26.x) 伺服器設計的區域樣本複製插件。管理員以 A、B 兩點框出一座建築並記錄成「樣本」，之後可以把樣本覆蓋到任意數量的「場地」，支援跨世界與跨維度。樣本會完整保存方塊、方塊 NBT（箱子內容、告示牌文字、生怪磚設定等）與實體，原建築拆除後仍可使用。覆蓋採分批處理並以 Boss 血條顯示進度，可設定每週定時自動重置，適合小遊戲場地、活動地圖與重複使用的建築。
 
+
+> **版本檢查提示**：若伺服器有安裝 [HttpHub](https://github.com/clre20/HttpHub)，本插件自動由 HttpHub 集中處理版本檢查與管理員登入通知，避免各插件自開連線與背景執行緒。
+
 ## 功能特性
 
 * **完整快照**：
@@ -115,6 +118,9 @@ zr undo castle east -confirm
 ---
 
 # ZoneReplica
+
+
+> **Update Checker**: When [HttpHub](https://github.com/clre20/HttpHub) is installed, update checks and operator login alerts are handled centrally by HttpHub via virtual threads, preventing redundant background connections.
 
 ZoneReplica is a zone template replication plugin designed for Paper (Minecraft 1.21.x and 26.x) servers. Administrators mark a build with two corners (A and B) and record it as a "sample", then stamp that sample onto any number of "placements", including in other worlds and dimensions. Samples store blocks, full block-entity NBT (chest contents, sign text, spawner settings, etc.) and entities, so they keep working even after the original build is removed. Placement runs in batches with a boss bar progress display and can be scheduled to reset automatically every week, ideal for minigame arenas, event maps and reusable builds.
 

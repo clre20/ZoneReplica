@@ -106,7 +106,11 @@ public final class ZoneReplica extends JavaPlugin implements Listener {
 
         messages.log("log.enabled", Placeholders.of(
                 "version", getPluginMeta().getVersion(), "samples", store.all().size()));
-        updateNotifier.checkOnStartup();
+        if (getServer().getPluginManager().isPluginEnabled("HttpHub") && clre20.httpHub.api.HttpHubAPI.isAvailable()) {
+            clre20.httpHub.api.HttpHubAPI.registerUpdateCheck(this, "clre20/ZoneReplica", getPluginMeta().getVersion(), "zonereplica.version", null);
+        } else {
+            updateNotifier.checkOnStartup();
+        }
     }
 
     @Override

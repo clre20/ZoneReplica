@@ -7,7 +7,7 @@ website: https://github.com/clre20/ZoneReplica
 main: clre20.zoneReplica.ZoneReplica
 api-version: '1.21'
 load: POSTWORLD
-softdepend: [ Multiverse-Core ]
+softdepend: [ Multiverse-Core, HttpHub ]
 
 authors: [ Clre20 ]
 
